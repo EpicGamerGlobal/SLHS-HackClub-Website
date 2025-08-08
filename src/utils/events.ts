@@ -1,0 +1,20 @@
+import { parseMarkdown } from './markdown';
+
+const eventFiles = import.meta.glob('/src/data/events/*.md', { as: 'raw' });
+
+export async function getAllEvents() {
+  const events = [];
+
+  for (const path in eventFiles) {
+    const markdown = await eventFiles[path]();
+    const { frontmatter, contentHtml } = await parseMarkdown(markdown);
+    events.push({
+      ...frontmatter,
+      contentHtml,
+      slug: path.split('/').pop()?.replace('.md', ''),
+    });
+  }
+
+  return events;
+}
+
