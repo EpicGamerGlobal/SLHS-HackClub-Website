@@ -13,8 +13,8 @@ const FluidBackground: React.FC<FluidBackgroundProps> = ({ pageTrigger }) => {
       WebGLFluid(canvasRef.current, {
         SIM_RESOLUTION: 128,
         DYE_RESOLUTION: 512,
-        DENSITY_DISSIPATION: 0.98,
-        VELOCITY_DISSIPATION: 0.99,
+        DENSITY_DISSIPATION: 0.9999,
+        VELOCITY_DISSIPATION: 0.9999,
         PRESSURE: 0.8,
         SPLAT_RADIUS: 0.25,
         COLORFUL: true,
