@@ -1,7 +1,8 @@
+
 import React from 'react';
 import { MantineProvider, createTheme } from '@mantine/core';
 import MainPage from './pages/MainPage';
-import DotBackground from './components/ui/DotBackground';
+import FluidBackground from './components/ui/FluidBackground.tsx';
 
 const theme = createTheme({
   colors: {
@@ -24,10 +25,11 @@ const theme = createTheme({
 const App: React.FC = () => {
   return (
     <MantineProvider theme={theme} defaultColorScheme="dark">
-      <DotBackground />
+      <FluidBackground />
       <MainPage />
     </MantineProvider>
   );
 };
 
 export default App;
+

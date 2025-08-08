@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Box } from '@mantine/core';
-import HolographicCard from '../ui/HolographicCard';
+import GlassCard from '../ui/GlassCard';
 import type { GalleryItem } from '../../types';
 import { getAllGalleryItems } from '../../utils/gallery';
 
@@ -52,7 +52,7 @@ const GallerySection: React.FC = () => {
         }}
       >
         {items.map((item, i) => (
-          <HolographicCard key={i}>
+          <GlassCard key={i}>
             <Box style={{ textAlign: 'center' }}>
               <img
                 src={item.image}
@@ -61,7 +61,7 @@ const GallerySection: React.FC = () => {
               />
               <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{item.title}</h3>
             </Box>
-          </HolographicCard>
+          </GlassCard>
         ))}
       </Box>
     </Box>

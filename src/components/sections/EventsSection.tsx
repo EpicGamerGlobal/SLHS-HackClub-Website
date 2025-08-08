@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Box } from '@mantine/core';
-import HolographicCard from '../ui/HolographicCard';
+import GlassCard from '../ui/GlassCard';
 import { getAllEvents } from '../../utils/events';
 import type { Event } from '../../types';
 
@@ -50,7 +50,7 @@ const EventsSection: React.FC = () => {
         }}
       >
         {events.map((event, i) => (
-          <HolographicCard key={i}>
+          <GlassCard key={i}>
             <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{event.title}</h3>
             <p
               style={{
@@ -61,7 +61,7 @@ const EventsSection: React.FC = () => {
             >
               {event.date}
             </p>
-          </HolographicCard>
+          </GlassCard>
         ))}
       </Box>
     </Box>

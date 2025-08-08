@@ -53,7 +53,7 @@ const MainPage: React.FC = () => {
       <FluidBackground pageTrigger={fluidTrigger} />
       <ReactFullpage
         licenseKey={'YOUR_LICENSE_KEY'}
-        scrollingSpeed={1000}
+        scrollingSpeed={700}
         afterLoad={() => {
           setFluidTrigger(prev => prev + 1);
           console.log("Next page")

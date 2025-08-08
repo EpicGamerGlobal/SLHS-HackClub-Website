@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box } from '@mantine/core';
-import HolographicCard from '../ui/HolographicCard';
+import GlassCard from '../ui/GlassCard';
 import type { Project } from '../../types';
 import { getAllProjects } from '../../utils/projects'; 
 
@@ -46,7 +46,7 @@ const ProjectsSection: React.FC = () => {
         margin: '0 auto',
       }}>
         {projects.map((project, i) => (
-          <HolographicCard key={i}>
+          <GlassCard key={i}>
             <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{project.title}</h3>
             {project.tech && (
               <p style={{ color: 'radial-gradient(at 0% 0%, rgb(255, 140, 55), rgb(236, 55, 80))', marginBottom: '1rem', fontSize: '0.9rem' }}>
@@ -54,7 +54,7 @@ const ProjectsSection: React.FC = () => {
               </p>
             )}
             <p style={{ color: 'rgba(255, 255, 255, 0.8)' }}>{project.description}</p>
-          </HolographicCard>
+          </GlassCard>
         ))}
       </Box>
     </Box>
