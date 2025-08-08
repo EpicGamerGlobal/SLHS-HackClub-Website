@@ -4,7 +4,7 @@ import GlassCard from '../ui/GlassCard';
 
 const SignupSection: React.FC = () => {
   const handleSignup = (): void => {
-    alert('arya likes 6 year old boys');
+    alert('heh');
   };
 
   return (
