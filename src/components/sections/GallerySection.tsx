@@ -2,15 +2,25 @@
 import React, { useEffect, useState } from 'react';
 import { Box } from '@mantine/core';
 import HolographicCard from '../ui/HolographicCard';
-import { GalleryItem } from '../../types';
+import type { GalleryItem } from '../../types';
 import { getAllGalleryItems } from '../../utils/gallery';
 
 const GallerySection: React.FC = () => {
   const [items, setItems] = useState<GalleryItem[]>([]);
 
+  
   useEffect(() => {
-    getAllGalleryItems().then(setItems);
+    getAllGalleryItems().then(rawItems => {
+      const typedItems: GalleryItem[] = rawItems.map(item => ({
+        title: item.title ?? 'Untitled',
+        image: item.image ?? '',
+        description: item.description ?? '',
+      }));
+
+      setItems(typedItems);
+    });
   }, []);
+
 
   return (
     <Box

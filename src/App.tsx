@@ -4,7 +4,6 @@ import MainPage from './pages/MainPage';
 import DotBackground from './components/ui/DotBackground';
 
 const theme = createTheme({
-  colorScheme: 'dark',
   colors: {
     dark: [
       '#C1C2C5',
@@ -24,9 +23,9 @@ const theme = createTheme({
 
 const App: React.FC = () => {
   return (
-    <MantineProvider theme={theme}>
-    <DotBackground />
-    <MainPage />
+    <MantineProvider theme={theme} defaultColorScheme="dark">
+      <DotBackground />
+      <MainPage />
     </MantineProvider>
   );
 };

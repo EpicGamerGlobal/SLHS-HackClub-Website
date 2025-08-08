@@ -9,8 +9,16 @@ const EventsSection: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
 
   useEffect(() => {
-    getAllEvents().then(setEvents);
-  }, []);
+  getAllEvents().then(rawEvents => {
+    const typedEvents: Event[] = rawEvents.map(event => ({
+      title: event.title ?? 'Untitled Event',
+      date: event.date ?? 'Date TBD',
+      description: event.description ?? '',
+    }));
+
+    setEvents(typedEvents);
+  });
+}, []);
 
   return (
     <Box

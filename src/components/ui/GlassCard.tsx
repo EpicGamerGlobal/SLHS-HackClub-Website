@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mantine/core';
-import { CardProps } from '../../types';
+import type { CardProps } from '../../types';
 
 const GlassCard: React.FC<CardProps> = ({ children, style = {} }) => {
   return (

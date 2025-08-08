@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Box } from '@mantine/core';
 import InfoSection from '../components/sections/InfoSection';
 import SignupSection from '../components/sections/SignupSection';
 import EventsSection from '../components/sections/EventsSection';
@@ -55,11 +54,12 @@ const MainPage: React.FC = () => {
       <ReactFullpage
         licenseKey={'YOUR_LICENSE_KEY'}
         scrollingSpeed={1000}
-        afterLoad={(origin, destination, direction) => {
+        afterLoad={() => {
           setFluidTrigger(prev => prev + 1);
           console.log("Next page")
         }}
-        render={({ state, fullpageApi }) => {
+        credits={{enabled: true, label: 'Made with fullpage.js', position: 'right'}}
+        render={() => {
           return (
             <ReactFullpage.Wrapper>
               <InfoSection />

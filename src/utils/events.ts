@@ -1,8 +1,8 @@
 import { parseMarkdown } from './markdown';
-
+import type { RawEventItem } from '../types';
 const eventFiles = import.meta.glob('/src/data/events/*.md', { as: 'raw' });
 
-export async function getAllEvents() {
+export async function getAllEvents(): Promise<RawEventItem[]> {
   const events = [];
 
   for (const path in eventFiles) {

@@ -21,9 +21,6 @@ const InfoSection: React.FC = () => {
           background: 'linear-gradient(45deg, #ff8c37, #ec3750)', 
           WebkitBackgroundClip: 'text', 
           WebkitTextFillColor: 'transparent',
-          '@media (max-width: 768px)': {
-            fontSize: '2rem',
-          },
         }}>
           Welcome to SLHS HackClub
         </h1>

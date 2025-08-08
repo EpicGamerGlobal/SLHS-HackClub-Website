@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Box } from '@mantine/core';
-import { CardProps, Position } from '../../types';
+import type { CardProps, Position } from '../../types';
 
 const HolographicCard: React.FC<CardProps> = ({ children, style = {} }) => {
   const [pos, setPos] = useState<Position>({ x: 50, y: 50 });

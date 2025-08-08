@@ -1,16 +1,22 @@
-
 import React, { useEffect, useState } from 'react';
 import { Box } from '@mantine/core';
 import HolographicCard from '../ui/HolographicCard';
-import { Project } from '../../types';
+import type { Project } from '../../types';
 import { getAllProjects } from '../../utils/projects'; 
 
 const ProjectsSection: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    getAllProjects().then(setProjects);
-  }, []);
+  getAllProjects().then((projects) => {
+    const typedProjects: Project[] = projects.map(p => ({
+      title: p.title ?? ' ',
+      tech: p.tech ?? ' ',
+      description: p.description ?? ' ',
+    }));
+    setProjects(typedProjects);
+  });
+}, []);
 
   return (
     <Box 

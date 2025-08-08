@@ -2,15 +2,24 @@
 import React, { useEffect, useState } from 'react';
 import { Box } from '@mantine/core';
 import GlassCard from '../ui/GlassCard';
-import { Officer } from '../../types';
+import type { Officer } from '../../types';
 import { getAllOfficers } from '../../utils/officers';
 
 const ContactSection: React.FC = () => {
   const [officers, setOfficers] = useState<Officer[]>([]);
 
   useEffect(() => {
-    getAllOfficers().then(setOfficers);
-  }, []);
+  getAllOfficers().then(rawOfficers => {
+    const typedOfficers: Officer[] = rawOfficers.map(o => ({
+      name: o.name ?? 'Unnamed Officer',
+      role: o.role ?? 'Officer',
+      email: o.email ?? 'No email',
+      avatar: o.avatar ?? '',
+    }));
+
+    setOfficers(typedOfficers);
+  });
+}, []);
 
   return (
     <Box

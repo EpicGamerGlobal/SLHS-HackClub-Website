@@ -1,8 +1,9 @@
 import { parseMarkdown } from './markdown';
+import type { RawProject } from '../types';
 
 const projectFiles = import.meta.glob('/src/data/projects/*.md', { as: 'raw' });
 
-export async function getAllProjects() {
+export async function getAllProjects(): Promise<RawProject[]> {
   const projects = [];
 
   for (const path in projectFiles) {
