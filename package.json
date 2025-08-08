@@ -10,21 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@dr-dark-flames/react-fluid-animation": "^1.0.0",
-    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@fullpage/react-fullpage": "^0.1.49",
     "@mantine/core": "^8.2.4",
-    "@types/three": "^0.179.0",
-    "@vitejs/plugin-react": "^5.0.0",
     "buffer": "^6.0.3",
-    "fullpage-react": "^3.1.0",
-    "fullpage.js": "^4.0.37",
     "gray-matter": "^4.0.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "remark": "^15.0.1",
-    "remark-html": "^16.0.1",
-    "three": "^0.179.1"
+    "remark-html": "^16.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
