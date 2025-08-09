@@ -1,10 +1,11 @@
 .glass3d { 
-  --filter-glass3d: blur(20px) brightness(1.31) saturate(3.6); 
-  --color-glass3d: hsl(189 80% 10% / 0.25); 
-  --noise-glass3d: url("https://www.transparenttextures.com/patterns/egg-shell.png"); 
-
+  --blur: blur(20px) brightness(1.31) saturate(3.6); 
+  --bg: hsl(189 80% 10% / 0.25); 
+  --texture: url("https://www.transparenttextures.com/patterns/egg-shell.png"); 
+  
   position: relative;
   z-index: 4;
+  
   box-shadow:
     0 0 0.75px hsl(205 20% 10% / 0.2),
     0.7px 0.8px 1.2px -0.4px hsl(205 20% 10% / 0.1),
@@ -13,25 +14,20 @@
     3.9px 4.4px 6.6px -1.7px hsl(205 20% 10% / 0.1),
     6.5px 7.2px 10.9px -2.1px hsl(205 20% 10% / 0.1),
     8px 9px 14px -2.5px hsl(205 20% 10% / 0.2);
-  transition: transform 0.3s ease;
-}
-
-.glass3d:hover {
-  transform: translateY(-4px);
+  
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass3d::before {
   content: ""; 
   position: absolute; 
   inset: 0; 
-  pointer-events: none; 
+  pointer-events: none;
   border-radius: inherit; 
-  overflow: hidden; 
-  z-index: 3; 
-  -webkit-backdrop-filter: var(--filter-glass3d); 
-  backdrop-filter: var(--filter-glass3d); 
-  background-color: var(--color-glass3d); 
-  background-image: var(--noise-glass3d); 
+  z-index: -1;
+  
+  backdrop-filter: var(--blur); 
+  background: var(--bg) var(--texture);
   background-size: 100px; 
   background-repeat: repeat; 
 }
@@ -40,10 +36,10 @@
   content: ""; 
   position: absolute; 
   inset: 0; 
-  pointer-events: none; 
+  pointer-events: none;
   border-radius: inherit; 
-  overflow: hidden; 
-  z-index: 5; 
+  z-index: -1;
+  
   box-shadow: 
     inset 2px 2px 1px -3px hsl(205 20% 90% / 0.8), 
     inset 4px 4px 2px -6px hsl(205 20% 90% / 0.3), 
@@ -54,6 +50,5 @@
 
 .glass3d > * { 
   position: relative; 
-  z-index: 6; 
+  z-index: 1; 
 }
-

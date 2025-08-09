@@ -15,6 +15,7 @@ const GlassCard: React.FC<CardProps> = ({ children, style = {} }) => {
         ...style,
       }}
     >
+      <i />
       {children}
     </Box>
   );
