@@ -6,7 +6,7 @@ import './GlassCard.css';
 const GlassCard: React.FC<CardProps> = ({ children, style = {} }) => {
   return (
     <Box
-      className="glass3d"
+      className="glass3d frosted"
       style={{
         borderRadius: '16px',
         padding: '2rem',
@@ -15,7 +15,6 @@ const GlassCard: React.FC<CardProps> = ({ children, style = {} }) => {
         ...style,
       }}
     >
-      <i />
       {children}
     </Box>
   );

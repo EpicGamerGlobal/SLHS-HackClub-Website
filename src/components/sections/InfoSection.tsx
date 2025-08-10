@@ -11,7 +11,8 @@ const InfoSection: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: '100vh',
-        padding: '2rem',
+        padding: '3rem 2rem',
+        overflow: 'visible',
       }}
     >
       <GlassCard style={{textAlign: 'center' }}>
