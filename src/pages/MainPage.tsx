@@ -9,71 +9,62 @@ import ReactFullpage from '@fullpage/react-fullpage';
 import FluidBackground from '../components/ui/FluidBackground';
 
 const MainPage: React.FC = () => {
-  useEffect(() => {
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'childList') {
-          mutation.addedNodes.forEach((node) => {
-            if (node instanceof HTMLElement && node.classList.contains('fp-section')) {
-              node.style.background = 'transparent';
-            }
-          });
+    const [fluidTrigger, setFluidTrigger] = useState(0);
+
+    useEffect(() => {
+        // Ensure all fullpage sections are transparent (fluid shows through)
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node instanceof HTMLElement && node.classList.contains('fp-section')) {
+                        node.style.background = 'transparent';
+                    }
+                });
+            });
+        });
+
+        const fullpageContainer = document.querySelector('#fullpage');
+        if (fullpageContainer) {
+            observer.observe(fullpageContainer, { childList: true, subtree: true });
         }
-      });
-    });
+        document.querySelectorAll('.fp-section').forEach((s) => {
+            (s as HTMLElement).style.background = 'transparent';
+        });
 
-    const fullpageContainer = document.querySelector('#fullpage');
-    if (fullpageContainer) {
-      observer.observe(fullpageContainer, { childList: true, subtree: true });
-    }
+        const handleActivate = () => setFluidTrigger((p) => p + 1);
+        document.addEventListener('click', handleActivate);
+        document.addEventListener('keypress', handleActivate);
 
-    const existingSections = document.querySelectorAll('.fp-section');
-    existingSections.forEach((section) => {
-      (section as HTMLElement).style.background = 'transparent';
-    });
+        return () => {
+            observer.disconnect();
+            document.removeEventListener('click', handleActivate);
+            document.removeEventListener('keypress', handleActivate);
+        };
+    }, []);
 
-    const handleClick = () => {
-      setFluidTrigger(prev => prev + 1);
-    };
-
-    document.addEventListener('click', handleClick);
-    document.addEventListener('keypress', handleClick);
-
-    return () => {
-      observer.disconnect();
-      document.removeEventListener('click', handleClick);
-      document.removeEventListener('keypress', handleClick);
-    };
-  }, []);
-  
-  const [fluidTrigger, setFluidTrigger] = useState(0)
-
-  return (
-    <>
-      <FluidBackground pageTrigger={fluidTrigger} />
-      <ReactFullpage
-        licenseKey={'YOUR_LICENSE_KEY'}
-        scrollingSpeed={700}
-        afterLoad={() => {
-          setFluidTrigger(prev => prev + 1);
-          console.log("Next page")
-        }}
-        credits={{enabled: true, label: 'Made with fullpage.js', position: 'right'}}
-        render={() => {
-          return (
-            <ReactFullpage.Wrapper>
-              <InfoSection />
-              <SignupSection />
-              <EventsSection />
-              <ProjectsSection />
-              <GallerySection />
-              <ContactSection />
-            </ReactFullpage.Wrapper>
-          );
-        }}
-      />
-    </>
-  );
+    return (
+        <>
+            <FluidBackground pageTrigger={fluidTrigger} />
+            <ReactFullpage
+                licenseKey={'YOUR_LICENSE_KEY'}
+                scrollingSpeed={700}
+                responsiveWidth={768}
+                responsiveHeight={600}
+                credits={{ enabled: true, label: 'Made with fullpage.js', position: 'right' }}
+                afterLoad={() => setFluidTrigger((p) => p + 1)} // splat on section change
+                render={() => (
+                    <ReactFullpage.Wrapper>
+                        <InfoSection />
+                        <SignupSection />
+                        <EventsSection />
+                        <ProjectsSection />
+                        <GallerySection />
+                        <ContactSection />
+                    </ReactFullpage.Wrapper>
+                )}
+            />
+        </>
+    );
 };
 
 export default MainPage;
