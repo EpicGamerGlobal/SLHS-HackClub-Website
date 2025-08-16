@@ -6,9 +6,10 @@ import ProjectsSection from '../components/sections/ProjectsSection';
 import GallerySection from '../components/sections/GallerySection';
 import ContactSection from '../components/sections/ContactSection';
 import ReactFullpage from '@fullpage/react-fullpage';
+import { useBackground } from '../providers/BackgroundContext';
 
 const MainPage: React.FC = () => {
-    const [activityTrigger, setActivityTrigger] = useState(0);
+    const { triggerActivity } = useBackground();
     
     useEffect(() => {
         const observer = new MutationObserver((mutations) => {
@@ -30,7 +31,7 @@ const MainPage: React.FC = () => {
             (s as HTMLElement).style.background = 'transparent';
         });
         
-        const handleActivate = () => setActivityTrigger((p) => p + 1);
+        const handleActivate = () => triggerActivity();
         document.addEventListener('click', handleActivate);
         document.addEventListener('keypress', handleActivate);
 
@@ -45,7 +46,7 @@ const MainPage: React.FC = () => {
             document.removeEventListener('click', handleActivate);
             document.removeEventListener('keypress', handleActivate);
         };
-    }, []);
+    }, [triggerActivity]);
     
     return (
         <ReactFullpage
@@ -54,7 +55,7 @@ const MainPage: React.FC = () => {
             responsiveWidth={768}
             responsiveHeight={600}
             credits={{ enabled: true, label: 'Made with fullpage.js', position: 'right' }}
-            afterLoad={() => setActivityTrigger((p) => p + 1)} 
+            afterLoad={() => triggerActivity()}
             render={() => (
                 <ReactFullpage.Wrapper>
                     <InfoSection />

@@ -1,4 +1,5 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import FluidBackground from '../components/ui/FluidBackground';
 import BalatroBackground from '../components/ui/BalatroBackground';
 
@@ -10,6 +11,7 @@ const BackgroundContext = createContext<BackgroundContextType | undefined>(undef
 
 export const BackgroundProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [backgroundType, setBackgroundType] = useState<'fluid' | 'balatro'>('fluid');
+  const [activityTrigger, setActivityTrigger] = useState(0);
   
   const cycleBackground = () => {
     setBackgroundType(prev => {
@@ -18,16 +20,22 @@ export const BackgroundProvider: React.FC<{ children: ReactNode }> = ({ children
     });
   };
 
+  const triggerActivity = () => {
+    setActivityTrigger(prev => prev + 1);
+  };
+
+  const backgroundElement = (
+    <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
+      {backgroundType === 'fluid' && <FluidBackground pageTrigger={activityTrigger} />}
+      {backgroundType === 'balatro' && <BalatroBackground />}
+    </div>
+  );
+
   return (
-    <>
-      <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
-        {backgroundType === 'fluid' && <FluidBackground />}
-        {backgroundType === 'balatro' && <BalatroBackground />}
-      </div>
-      <BackgroundContext.Provider value={{ cycleBackground }}>
-        {children}
-      </BackgroundContext.Provider>
-    </>
+    <BackgroundContext.Provider value={{ cycleBackground, triggerActivity }}>
+      {typeof document !== 'undefined' && createPortal(backgroundElement, document.body)}
+      {children}
+    </BackgroundContext.Provider>
   );
 };
 
