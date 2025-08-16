@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { MantineProvider, createTheme } from '@mantine/core';
 import MainPage from './pages/MainPage';
 import FluidBackground from './components/ui/FluidBackground.tsx';
+import { BackgroundProvider } from './providers/BackgroundContext.tsx'
 
 const theme = createTheme({
   colors: {
@@ -25,8 +25,9 @@ const theme = createTheme({
 const App: React.FC = () => {
   return (
     <MantineProvider theme={theme} defaultColorScheme="dark">
-      <FluidBackground />
-      <MainPage />
+      <BackgroundProvider>
+        <MainPage />
+      </BackgroundProvider>
     </MantineProvider>
   );
 };
