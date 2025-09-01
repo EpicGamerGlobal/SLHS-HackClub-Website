@@ -26,7 +26,9 @@ const InfoSection: React.FC = () => {
           Welcome to SLHS HackClub
         </h1>
         <p style={{ fontSize: '1.2rem', lineHeight: '1.6' }}>
-          Hack Club is a global community of high school students who love coding and building projects. It’s a place where you can learn new skills, work on fun tech projects, and meet other students who share your passions. Whether you are just starting out or already know how to code, Hack Club supports you with workshops, events, and a supportive network to help you grow as a coder and maker.
+          A global community of high school students who love coding and building projects. Learn new skills, work on fun tech, and meet students who share your passions.
+          <br/><br/>
+          Beginner friendly • Welcomes experienced coders
         </p>
       </GlassCard>
     </Box>
